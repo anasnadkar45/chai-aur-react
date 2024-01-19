@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -27,6 +27,20 @@ function App() {
       prevTodo
     ))
   }
+
+  // get todos from localstorage
+
+  useEffect(()=>{
+    const todos = JSON.parse(localStorage.getItem('todos'));
+
+    if(todos && todos.length>0){
+      setTodos(todos);
+    }
+  },[])
+
+  useEffect(()=>{
+    localStorage.setItem('todos', JSON.stringify(todos))
+  },[todos])
 
   return (
     <TodoProvider value={{ todos, addTodo, deleteTodo, updateTodo, toggleComplete}}>
