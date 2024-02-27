@@ -18,7 +18,7 @@ exports.localFileUpload = async(req, res) => {
         });
 
     }catch(err){
-        // log error
+        
         console.log(err);
     }
 };
